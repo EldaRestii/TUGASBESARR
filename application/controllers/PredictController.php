@@ -63,7 +63,14 @@ class PredictController extends CI_Controller
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
         $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
+
+        if ($httpCode !== 200 || !$response) {
+            // Jika API tidak aktif atau ada error, tampilkan pesan kesalahan
+            $this->load->view('view_form_predict', ['errors' => 'Prediction service is currently unavailable.']);
+            return;
+        }
 
         // Decode respons API
         $result = json_decode($response, true);
