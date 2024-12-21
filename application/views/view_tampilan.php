@@ -20,7 +20,7 @@
             <p>Provide your input below to predict the result.</p>
         </div>
         <div class="card-content">
-            <form action="<?php echo base_url('PredictController/predict'); ?>" method="post">
+            <form id="predictionForm">
                 <label for="Sex">Sex:</label>
                 <select name="Sex" id="Sex">
                     <option value="1">Female</option>
@@ -48,22 +48,40 @@
     </div>
 
     <!-- Additional Sections -->
-    <div class="content-section">
+    <div class="content-section" id="predictionResult">
         <h2>Hasil Prediksi</h2>
-        <?php if (isset($result) && !empty($result)): ?>
-            <p>
-                <?php if (isset($result['result'])): ?>
-                    Prediction Result: <?= $result['result'] == 1 ? 'Survived' : 'Did Not Survive'; ?>
-                <?php else: ?>
-                    Error: Unable to retrieve prediction result.
-                <?php endif; ?>
-            </p>
-        <?php elseif (isset($errors)): ?>
-            <p style="color: red;"><?= $errors; ?></p>
-        <?php else: ?>
-            <p>Provide an overview or description here.</p>
-        <?php endif; ?>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#predictionForm').on('submit', function (event) {
+                event.preventDefault(); // Mencegah form reload halaman
+
+                $.ajax({
+                    url: '<?php echo base_url('PredictController/predict'); ?>', // URL Controller
+                    type: 'POST',
+                    data: $(this).serialize(), // Ambil data dari formulir
+                    dataType: 'json', // Format respons diharapkan JSON
+                    success: function (response) {
+                        // Jika berhasil, tampilkan hasil prediksi
+                        if (response.result !== undefined) {
+                            const resultText = response.result == 1
+                                ? '<span style="color: green;">Survived ✔</span>'
+                                : '<span style="color: red;">Did Not Survive ❌</span>';
+                            $('#predictionResult').html(`<p>Prediction Result: ${resultText}</p>`);
+                        } else {
+                            $('#predictionResult').html('<p style="color: red;">Error: Unable to retrieve prediction result.</p>');
+                        }
+                    },
+                    error: function () {
+                        // Jika ada kesalahan, tampilkan pesan error
+                        $('#predictionResult').html('<p style="color: red;">Error: Unable to connect to the prediction service.</p>');
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 

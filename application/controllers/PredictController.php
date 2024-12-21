@@ -54,7 +54,7 @@ class PredictController extends CI_Controller
 
         // Kirim data ke API Flask
         $jsonData = json_encode($dataForPrediction);
-        $url = "http://127.0.0.1:5000/predict";
+        $url = "https://joyful-abundance-production.up.railway.app/predict";
 
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -87,6 +87,7 @@ class PredictController extends CI_Controller
         $this->PredictModel->save_prediction($dataForDatabase);
 
         // Tampilkan hasil prediksi
-        $this->load->view('view_tampilan', ['result' => $result]);
+        header('Content-Type: application/json');
+        echo json_encode($result);
     }
 }
