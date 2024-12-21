@@ -7,7 +7,7 @@ class PredictController extends CI_Controller
     public function index()
     {
         // Tampilkan form
-        $this->load->view('view_form_predict');
+        $this->load->view('view_tampilan');
     }
 
     public function predict()
@@ -31,7 +31,7 @@ class PredictController extends CI_Controller
 
         if ($this->form_validation->run() == FALSE) {
             // Tampilkan error jika validasi gagal
-            $this->load->view('view_form_predict', ['errors' => validation_errors()]);
+            $this->load->view('view_tampilan', ['errors' => validation_errors()]);
             return;
         }
 
@@ -68,7 +68,7 @@ class PredictController extends CI_Controller
 
         if ($httpCode !== 200 || !$response) {
             // Jika API tidak aktif atau ada error, tampilkan pesan kesalahan
-            $this->load->view('view_form_predict', ['errors' => 'Prediction service is currently unavailable.']);
+            $this->load->view('view_tampilan', ['errors' => 'Prediction service is currently unavailable.']);
             return;
         }
 
@@ -87,6 +87,6 @@ class PredictController extends CI_Controller
         $this->PredictModel->save_prediction($dataForDatabase);
 
         // Tampilkan hasil prediksi
-        $this->load->view('view_result_predict', ['result' => $result]);
+        $this->load->view('view_tampilan', ['result' => $result]);
     }
 }

@@ -1,0 +1,163 @@
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f4f4f9;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0;
+}
+
+.card {
+	background-color: #86b1d7;
+	border-radius: 8px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	width: 600px;
+	overflow: hidden;
+	transition: transform 0.3s, box-shadow 0.3s;
+	margin-top: 40px;
+	/* Margin atas untuk jarak dari atas */
+}
+
+.card:hover {
+	transform: translateY(-10px);
+	box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+	background-color: #133e87;
+	color: white;
+	padding: 16px;
+	text-align: center;
+}
+
+.card-header h2 {
+	margin: 0;
+	font-size: 24px;
+}
+
+.card-header p {
+	margin: 8px 0 0;
+	font-size: 14px;
+	color: #f4f4f9;
+}
+
+.card-content {
+	padding: 16px;
+}
+
+.card-content label {
+	display: block;
+	margin: 12px 0 4px;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.card-content input,
+.card-content select {
+	width: 100%;
+	/* Semua elemen akan mengambil 100% dari lebar parent */
+	padding: 8px;
+	margin-bottom: 30px;
+	border: 1px solid #698ec6;
+	border-radius: 4px;
+	font-size: 14px;
+	box-sizing: border-box;
+	/* Mencegah padding menambah lebar */
+}
+
+.card-content button {
+	width: 100%;
+	padding: 10px;
+	background-color: #608bc1;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	font-size: 16px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.card-content button:hover {
+	background-color: #0056b3;
+}
+
+.content-section {
+	width: 500px;
+	/* Sesuaikan dengan lebar card */
+	margin-top: 20px;
+	/* Jarak antar section dan card */
+	padding: 50px;
+	background-color: #133e87;
+	border-radius: 8px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	margin: 20px;
+}
+
+.content-section h2 {
+	margin: 0 0 12px;
+	font-size: 20px;
+	color: #fffcfc;
+	text-align: center;
+}
+
+.content-section p {
+	margin: 0;
+	font-size: 20px;
+	color: #ffffff;
+	text-align: center;
+}
+
+.section1 {
+	display: flex;
+	/* Menggunakan Flexbox untuk perataan */
+	flex-direction: column;
+	/* Elemen diatur dalam kolom */
+	justify-content: center;
+	/* Vertikal rata tengah */
+	align-items: center;
+	/* Horizontal rata tengah */
+	height: 100vh;
+	/* Mengatur tinggi menjadi 100% dari tinggi layar */
+	width: 100%;
+	/* Membuat lebar section mengisi 100% dari lebar halaman */
+	text-align: center;
+	/* Pastikan teks rata tengah */
+	background-color: transparent;
+	/* Tidak ada latar belakang */
+	margin: 0;
+	/* Menghilangkan margin jika ada */
+	padding: 0;
+	/* Tidak ada padding tambahan */
+	border: none;
+	/* Tidak ada border */
+	/* background-image: url('assets/laut.jpg'); Menetapkan gambar latar belakang */
+	background-size: cover;
+	/* Membuat gambar mengisi seluruh area */
+	background-position: center;
+	/* Memastikan gambar terpusat */
+	background-repeat: no-repeat;
+	/* Tidak ada pengulangan gambar */
+}
+
+/* Font aesthetic untuk tulisan */
+.section1 h2 {
+	font-family: "Playfair Display", serif;
+	/* Font estetik untuk judul */
+	font-size: 50px;
+	/* Ukuran font lebih besar */
+	color: #eae0e0;
+	/* Warna teks */
+	margin-bottom: 10px;
+	/* Jarak bawah antara judul dan paragraf */
+}
+
+.section1 p {
+	font-family: "Roboto", sans-serif;
+	/* Font simpel untuk paragraf */
+	font-size: 30px;
+	/* Ukuran font */
+	color: #eae0e0;
+	/* Warna teks */
+	line-height: 1.6;
+	/* Spasi antar baris */
+}
